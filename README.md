@@ -8,7 +8,7 @@ Hosted on GitHub Pages: **https://nr-sbe.github.io/metamorph/**
 
 Pushes to `main` rebuild and publish the game through `.github/workflows/pages.yml`. Use `pnpm build:pages` for the `/metamorph/` deployment path; `pnpm build` continues to build for a site root.
 
-Requires a desktop browser with WebGPU or WebGL 2 and hardware acceleration. Keyboard/mouse recommended. Everything needed at runtime is included locally; no account, API key or paid service is used.
+Requires a desktop browser with WebGPU or WebGL 2 and hardware acceleration. Keyboard/mouse, gamepad, and touch controls are supported. Mobile defaults to Performance graphics; actual frame rate depends on the device. Everything needed at runtime is included locally; no account, API key or paid service is used.
 
 With Node.js 20.19+ installed, build the game from a fresh clone:
 
@@ -39,6 +39,18 @@ If Corepack is unavailable, install pnpm or use `npm install`, `npm run dev`, `n
 Choose **Visual Study** to inspect the new character, mutations and street art. Press **O** to rotate the camera in 45-degree increments, **1–5** to change mutations, and WASD to explore.
 
 Choose **Enter the City** for the opening and encounter progression. Choose **Combat Sandbox** for twenty enemies and full Critical Mass. The field manual has direct access to **20-target practice**, **Rival duel**, **Skyline run**, and individual **Signature Practice** setups for all five forms. Escape pauses; Reset District restores scenery and encounters. Settings and best score are saved locally.
+
+## Mobile / fullscreen
+
+Open the same GitHub Pages link on your phone; touch controls appear automatically. The **TOUCH ON/OFF** button also enables them on a desktop or tablet. Landscape is recommended, with a portrait layout available.
+
+- Left stick moves; drag the city to look. **SPRINT** toggles running.
+- Tap **STRIKE**, or hold it for one second for an automatic special; **SPECIAL** activates it directly.
+- Hold **JUMP**, release to launch; tap in the air to glide. **DODGE**, **DIVE**, and **ANCHOR** handle aerial movement.
+- **GRAB → CONSUME** feeds; **GRAB → STRIKE** throws. **SHIELD** is held; **ARMOR** toggles. **MASS** uses a Devastator; **TARGET** cycles enemies.
+- Tap the five mutation icons to switch forms. Pause and settings stay at the top right.
+
+Tap **FULLSCREEN** to hide browser bars where supported. For an iPhone full-screen launch, open in Safari, use **Share → Add to Home Screen**, then launch from the new icon. The Home Screen version still needs an internet connection. Rotate to landscape if orientation locking is unavailable. Browser fullscreen availability and performance vary by phone; a physical iPhone/Android review remains outstanding.
 
 ## Controls
 
