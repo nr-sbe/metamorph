@@ -1,3 +1,4 @@
+import { ASSET_BASE } from './assetPaths';
 import './style.css';
 import {shellMarkup} from './uiLayout';
 import {formRoles} from './uiIcons';
@@ -124,7 +125,7 @@ async function boot(){try{
  const sun=new DirectionalLight('late afternoon sun',new Vector3(-.5,-.65,.4),scene);sun.position.set(140,220,-150);sun.intensity=2.8;sun.diffuse=new Color3(1,.92,.8);sun.shadowMinZ=1;sun.shadowMaxZ=650;sun.autoCalcShadowZBounds=true;
 
  const shadows=new CascadedShadowGenerator(2048,sun);shadows.numCascades=2;shadows.stabilizeCascades=true;shadows.shadowMaxZ=170;shadows.lambda=.8;shadows.cascadeBlendPercentage=.1;shadows.usePercentageCloserFiltering=true;shadows.filteringQuality=ShadowGenerator.QUALITY_MEDIUM;shadows.bias=.0005;shadows.normalBias=.035;
- const environment=new HDRCubeTexture('/assets/lighting/urban_street_02.hdr',scene,128,false,true,false,true);scene.environmentTexture=environment;scene.environmentIntensity=.8;
+ const environment=new HDRCubeTexture(ASSET_BASE+'lighting/urban_street_02.hdr',scene,128,false,true,false,true);scene.environmentTexture=environment;scene.environmentIntensity=.8;
 
  scene.createDefaultSkybox(environment,true,1800,.18,false);
 

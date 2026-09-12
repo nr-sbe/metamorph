@@ -1,3 +1,4 @@
+import { ASSET_BASE } from './assetPaths';
 import {Scene,Mesh,VertexData,VertexBuffer,Vector3,PBRMaterial,Color3,TransformNode,Texture,Skeleton,Bone,Matrix,BoundingInfo} from '@babylonjs/core';
 import type {Form} from './rules';
 
@@ -25,7 +26,7 @@ const surfaces=new WeakMap<Scene,{shellNormal:Texture;shellRough:Texture;tissueN
 function maps(scene:Scene){
  if(typeof document==='undefined')return null;
  let value=surfaces.get(scene);if(value)return value;
- const load=(name:string,u:number,v:number)=>{const t=new Texture('/assets/mutations/'+name+'.jpg',scene);t.uScale=u;t.vScale=v;t.gammaSpace=false;t.anisotropicFilteringLevel=8;return t;};
+ const load=(name:string,u:number,v:number)=>{const t=new Texture(ASSET_BASE+'mutations/'+name+'.jpg',scene);t.uScale=u;t.vScale=v;t.gammaSpace=false;t.anisotropicFilteringLevel=8;return t;};
  value={shellNormal:load('pine_bark_normal',1.5,2),shellRough:load('pine_bark_rough',1.5,2),tissueNormal:load('brown_leather_normal',2,3),tissueRough:load('brown_leather_rough',2,3)};
  value.shellNormal.level=.34;value.tissueNormal.level=.7;surfaces.set(scene,value);return value;
 }

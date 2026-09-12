@@ -1,3 +1,4 @@
+import { ASSET_BASE } from './assetPaths';
 import {PBRMaterial,Color3,Texture,Vector3,MeshBuilder,Mesh,VertexData,VertexBuffer,TransformNode} from '@babylonjs/core';
 import {placeScan} from './scannedProps';
 import type {City} from './world';
@@ -7,7 +8,7 @@ export function upgradeMaterials(city:City){
   city.materials[name]?.dispose();const m=new PBRMaterial(name,city.scene);m.albedoColor=Color3.FromHexString(color);m.roughness=rough;m.metallic=metal;m.forceIrradianceInFragment=true;m.forceIrradianceInFragment=true;m.environmentIntensity=.85;city.materials[name]=m;return m;
  };
  const scan=(name:string,asset:string,tiling:number,roughness=.8)=>{
-  const m=pbr(name,'#ffffff',roughness);const t=(suffix:string)=>{const t=new Texture('/assets/textures/'+asset+'_'+suffix+'.jpg',city.scene);t.uScale=t.vScale=tiling;t.anisotropicFilteringLevel=8;return t;};
+  const m=pbr(name,'#ffffff',roughness);const t=(suffix:string)=>{const t=new Texture(ASSET_BASE+'textures/'+asset+'_'+suffix+'.jpg',city.scene);t.uScale=t.vScale=tiling;t.anisotropicFilteringLevel=8;return t;};
   m.albedoTexture=t('diff');m.bumpTexture=t('normal');m.bumpTexture.level=.55;m.metallicTexture=t('rough');m.useRoughnessFromMetallicTextureAlpha=false;m.useRoughnessFromMetallicTextureGreen=true;m.useMetallnessFromMetallicTextureBlue=false;return m;
  };
  const asphalt=scan('road','aerial_asphalt_01',45,.75);asphalt.albedoColor=new Color3(.28,.29,.29);

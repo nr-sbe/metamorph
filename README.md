@@ -4,6 +4,10 @@ A playable, original browser action prototype built around Prototype 1's weapon 
 
 ## Play
 
+Hosted on GitHub Pages: **https://nr-sbe.github.io/metamorph/**
+
+Pushes to `main` rebuild and publish the game through `.github/workflows/pages.yml`. Use `pnpm build:pages` for the `/metamorph/` deployment path; `pnpm build` continues to build for a site root.
+
 Requires a desktop browser with WebGPU or WebGL 2 and hardware acceleration. Keyboard/mouse recommended. Everything needed at runtime is included locally; no account, API key or paid service is used.
 
 With Node.js 20.19+ installed, build the game from a fresh clone:
@@ -19,7 +23,7 @@ Then start the local server (the downloadable ZIP already includes a built `dist
 node tools/serve.mjs
 ```
 
-Open **http://127.0.0.1:4173**. Alternatively, serve `dist` using any static HTTP server. Opening `index.html` as a `file://` URL will not work. For deployment, upload the contents of `dist` to the root of a static HTTPS site. No deployment has been performed.
+Open **http://127.0.0.1:4173**. Alternatively, serve `dist` using any static HTTP server. Opening `index.html` as a `file://` URL will not work. For deployment, upload the contents of `dist` to the root of a static HTTPS site. GitHub Pages deployment is automated from `main`.
 
 For development:
 

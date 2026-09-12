@@ -1,3 +1,4 @@
+import { ASSET_BASE } from './assetPaths';
 import {AssetContainer,Scene,LoadAssetContainerAsync,TransformNode,InstancedMesh,Vector3,PBRMaterial,Color3} from '@babylonjs/core';
 import '@babylonjs/loaders/glTF';
 const scans=new WeakMap<Scene,Map<string,AssetContainer>>();
@@ -5,7 +6,7 @@ const scans=new WeakMap<Scene,Map<string,AssetContainer>>();
 export async function prepareScannedProps(scene:Scene){
  const map=new Map<string,AssetContainer>();
  for(const name of ['covered_car','metal_trash_can','trashbag','concept_car']){
-  const asset=await LoadAssetContainerAsync('/assets/props/'+name+'/'+name+(name==='concept_car'?'.glb':'.gltf'),scene);
+  const asset=await LoadAssetContainerAsync(ASSET_BASE+'props/'+name+'/'+name+(name==='concept_car'?'.glb':'.gltf'),scene);
   for(const m of asset.materials)if(m instanceof PBRMaterial){m.forceIrradianceInFragment=true;if(name==='concept_car'){m.clearCoat.bumpTexture=null;m.clearCoat.texture=null;m.clearCoat.textureRoughness=null;m.iridescence.isEnabled=false;if(m.subSurface.isRefractionEnabled){m.subSurface.isRefractionEnabled=false;m.alpha=.5;m.transparencyMode=PBRMaterial.PBRMATERIAL_ALPHABLEND;}if(m.name==='License'){m.albedoTexture=null;m.emissiveTexture=null;m.albedoColor=new Color3(.03,.035,.04);}}m.environmentIntensity=.85;if(m.bumpTexture)m.bumpTexture.level=.7;}
   map.set(name,asset);
  }

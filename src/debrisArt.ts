@@ -1,3 +1,4 @@
+import { ASSET_BASE } from './assetPaths';
 import {Color3,Geometry,Mesh,PBRMaterial,Scene,Texture,VertexData} from '@babylonjs/core';
 
 export const DEBRIS_KINDS=['stone','metal','glass','wood','tissue','spike'] as const;
@@ -82,7 +83,7 @@ export class DebrisArt{
  readonly materials=new Map<DebrisKind,PBRMaterial>();
  private textures:Texture[]=[];
  constructor(scene:Scene){
-  const texture=(path:string,scale=1)=>{const t=new Texture('/assets/'+path,scene);t.uScale=t.vScale=scale;this.textures.push(t);return t;};
+  const texture=(path:string,scale=1)=>{const t=new Texture(ASSET_BASE+''+path,scene);t.uScale=t.vScale=scale;this.textures.push(t);return t;};
   for(const kind of DEBRIS_KINDS){
    this.shapes.set(kind,Array.from({length:3},(_,i)=>{const shape=fragmentShape(kind,i),geometry=new Geometry(kind+' fracture '+i,scene,shape.data);scene.pushGeometry(geometry);return {geometry,half:shape.half};}));
    const m=new PBRMaterial('fractured '+kind,scene);m.forceIrradianceInFragment=true;m.metallic=0;m.roughness=.85;m.environmentIntensity=.8;

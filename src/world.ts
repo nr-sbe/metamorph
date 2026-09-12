@@ -1,3 +1,4 @@
+import { ASSET_BASE } from './assetPaths';
 import {Scene,Mesh,InstancedMesh,MeshBuilder,StandardMaterial,Color3,Vector3,DynamicTexture,TransformNode,ShadowGenerator,Quaternion,Texture,Material,Vector4} from '@babylonjs/core';
 import RAPIER from '@dimforge/rapier3d-compat/rapier.es.js';
 import {Bounds,seeded,clamp} from './rules';
@@ -14,9 +15,9 @@ export class City{
  makeMaterials(){
  this.mat('road','#252e33');this.mat('sidewalk','#747572');this.mat('paint','#bab6a5');this.mat('yellow','#d8ad58');this.mat('metal','#303a3c');this.mat('glass','#364e55');this.mat('brick','#705b4d');this.mat('concrete','#7e807c');this.mat('wood','#977451');this.mat('leaf','#495650');this.mat('rubber','#111617');this.mat('light','#ffd4a4',1.2);this.mat('red','#8c3f36');this.mat('blue','#456571');this.mat('white','#a9b0ad');this.mat('tissue','#592e2a');
  const tex=new DynamicTexture('asphalt texture',{width:512,height:512},this.scene,false);const ctx=tex.getContext();ctx.fillStyle='#354046';ctx.fillRect(0,0,512,512);for(let i=0;i<26000;i++){const v=Math.floor(this.random()*35+40);ctx.fillStyle=`rgba(${v},${v+7},${v+9},.35)`;ctx.fillRect(this.random()*512,this.random()*512,1.5,1.5);}tex.update();tex.uScale=tex.vScale=40;(this.materials.road as StandardMaterial).diffuseTexture=tex;
- const asphalt = new Texture('/assets/textures/asphalt_02_diff.jpg',this.scene);asphalt.uScale=asphalt.vScale=110;(this.materials.road as StandardMaterial).diffuseTexture=asphalt;(this.materials.road as StandardMaterial).diffuseColor=new Color3(.72,.72,.72);
- const roadNormal = new Texture('/assets/textures/asphalt_02_nor_gl.jpg',this.scene);roadNormal.uScale=roadNormal.vScale=110;roadNormal.level=.45;(this.materials.road as StandardMaterial).bumpTexture=roadNormal;
- const concrete = new Texture('/assets/textures/concrete_floor_02_diff.jpg',this.scene);concrete.uScale=12;concrete.vScale=11;(this.materials.sidewalk as StandardMaterial).diffuseTexture=concrete;(this.materials.sidewalk as StandardMaterial).diffuseColor=new Color3(.95,.95,.95);
+ const asphalt = new Texture(ASSET_BASE+'textures/asphalt_02_diff.jpg',this.scene);asphalt.uScale=asphalt.vScale=110;(this.materials.road as StandardMaterial).diffuseTexture=asphalt;(this.materials.road as StandardMaterial).diffuseColor=new Color3(.72,.72,.72);
+ const roadNormal = new Texture(ASSET_BASE+'textures/asphalt_02_nor_gl.jpg',this.scene);roadNormal.uScale=roadNormal.vScale=110;roadNormal.level=.45;(this.materials.road as StandardMaterial).bumpTexture=roadNormal;
+ const concrete = new Texture(ASSET_BASE+'textures/concrete_floor_02_diff.jpg',this.scene);concrete.uScale=12;concrete.vScale=11;(this.materials.sidewalk as StandardMaterial).diffuseTexture=concrete;(this.materials.sidewalk as StandardMaterial).diffuseColor=new Color3(.95,.95,.95);
  for(let k=0;k<5;k++){
  const m=this.mat('tower'+k,['#8b8b80','#667477','#a3917c','#657377','#796c60'][k]);const t=new DynamicTexture('facade grid '+k,{width:512,height:1024},this.scene,true);const c=t.getContext();c.fillStyle=['#969b8e','#647b76','#aaa89a','#485f61','#817f6d'][k];c.fillRect(0,0,512,1024);
  for(let y=4;y<1024;y+=40)for(let x=4;x<512;x+=32){const lit=this.random()>.77;c.fillStyle=lit?'#b9a083':this.random()>.4?'#2e424d':'#405661';c.fillRect(x,y,23,29);c.fillStyle=lit?'#ccb596':'#60757b';c.fillRect(x,y,23,2);c.fillStyle='#26343b';c.fillRect(x+11,y,1,29);if(x%64===4){c.fillStyle='#bab8a4';c.fillRect(x-4,y,4,40);c.fillStyle='#655d43';c.fillRect(x-1,y,1,40);}}

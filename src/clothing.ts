@@ -1,3 +1,4 @@
+import { ASSET_BASE } from './assetPaths';
 import {Color3, DynamicTexture, Mesh, PBRMaterial, Scene, Texture, VertexBuffer, VertexData} from '@babylonjs/core';
 
 type Garment = 'shirt' | 'trousers' | 'boots' | 'pockets' | 'belt' | 'vest' | 'helmet' | 'hood' | 'mask' | 'pads';
@@ -37,7 +38,7 @@ export function dressCharacter(body:Mesh, scene:Scene,style='player'):PBRMateria
  cloth.forceIrradianceInFragment=true;cloth.backFaceCulling=false;
  const leather=new PBRMaterial('worn leather boots and belt',scene);
  leather.albedoColor=Color3.FromHexString('#333831');leather.roughness=.76;leather.metallic=0;
- leather.bumpTexture=new Texture('/assets/mutations/brown_leather_normal.jpg',scene);
+ leather.bumpTexture=new Texture(ASSET_BASE+'mutations/brown_leather_normal.jpg',scene);
  leather.bumpTexture.level=.24;leather.forceIrradianceInFragment=true;leather.backFaceCulling=false;
  const accepts=(kind:Garment,x:number,y:number,z:number)=> {
   if(kind==='shirt')return y>.946&&y<1.558&&Math.abs(x)<(hunter?.35:enemy?.72:.455)&&!(y>1.53&&Math.abs(x)<.1);

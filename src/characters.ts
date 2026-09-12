@@ -1,3 +1,4 @@
+import { ASSET_BASE } from './assetPaths';
 import {AssetContainer,Scene,LoadAssetContainerAsync,TransformNode,AnimationGroup,PBRMaterial,Color3,InstantiatedEntries,Material,VertexBuffer,Mesh} from '@babylonjs/core';
 import '@babylonjs/loaders/glTF';
 import {dressCharacter} from './clothing';
@@ -6,7 +7,7 @@ const templates=new WeakMap<Scene,AssetContainer>();
 let serial=0;
 const aliases:Record<string,string>={'DEF-hand.L':'hand_l','DEF-hand.R':'hand_r','DEF-forearm.R':'lowerarm_r','DEF-upper_arm.L':'upperarm_l','DEF-upper_arm.R':'upperarm_r'};
 export async function prepareCharacters(scene:Scene){
- const [body,motion]=await Promise.all([LoadAssetContainerAsync('/assets/characters/hero.glb',scene),LoadAssetContainerAsync('/assets/characters/motion.glb',scene)]);
+ const [body,motion]=await Promise.all([LoadAssetContainerAsync(ASSET_BASE+'characters/hero.glb',scene),LoadAssetContainerAsync(ASSET_BASE+'characters/motion.glb',scene)]);
  const keep=new Set(['Idle_Loop','Walk_Loop','Sprint_Loop','Jump_Loop','Jump_Land','Punch_Cross','Punch_Jab','Sword_Attack','Sword_Idle','Spell_Simple_Shoot','Hit_Chest','Death01','Roll']);
  const nodes=new Map(body.transformNodes.map(n=>[n.name,n]));
  for(const source of motion.animationGroups){if(!keep.has(source.name))continue;const group=source.clone(source.name,target=>nodes.get(target.name)??null,true);group.stop();body.animationGroups.push(group);scene.removeAnimationGroup(group);}
