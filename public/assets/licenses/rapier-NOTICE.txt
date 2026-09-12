@@ -1,0 +1,5 @@
+Rapier 0.17.3
+Copyright Dimforge and Rapier contributors.
+License: Apache License 2.0
+Source: https://github.com/dimforge/rapier.js
+Full Apache License text is provided in babylon-Apache-2.0.md in this directory.
